@@ -41,6 +41,13 @@ class RecipeControllerTest {
     }
 
     @Test
+    public void testGetRecipeNumberFormatException() throws Exception {
+        mockMvc.perform(get("/recipe/asdf/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
+    }
+
+    @Test
     void testGetRecipe() throws Exception {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
